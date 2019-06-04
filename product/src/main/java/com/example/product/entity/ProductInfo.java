@@ -6,11 +6,12 @@ import lombok.Data;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @Entity
-public class ProductInfo {
+public class ProductInfo implements Serializable {
 
     @Id
     @Column(name="id")
@@ -28,11 +29,7 @@ public class ProductInfo {
     @Column(name="status")
     private Integer productStatus;
 
-    @Column(name="categories")
-    private Enum productCategories;
-
-    @Column(name="brand_id")
-    private Integer productBrandId;
+    private String categoryType;
 
     @Column(name="desc")
     private String productDesc;

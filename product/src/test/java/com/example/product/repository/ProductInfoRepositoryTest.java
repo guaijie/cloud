@@ -1,17 +1,20 @@
 package com.example.product.repository;
 
-import com.example.product.Enum.ProductStatusEnum;
-import com.example.product.entity.ProductInfo;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+        import com.example.product.Enum.ProductStatusEnum;
+        import com.example.product.entity.ProductInfo;
+        import org.junit.Assert;
+        import org.junit.Test;
+        import org.junit.runner.RunWith;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.boot.test.context.SpringBootTest;
+        import org.springframework.data.domain.Page;
+        import org.springframework.data.domain.PageRequest;
+        import org.springframework.data.domain.Pageable;
+        import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
+        import java.util.List;
 
-import static org.junit.Assert.*;
+        import static org.junit.Assert.*;
 
 
 @SpringBootTest
@@ -19,13 +22,20 @@ import static org.junit.Assert.*;
 public class ProductInfoRepositoryTest {
 
     @Autowired
-    private ProductInfoRepository productInfoRepository;
+    ProductInfoRepository productInfoRepository;
 
     @Test
     public void findByProductStatus(){
-
-        List<ProductInfo> list=productInfoRepository.findByProductStatus(0);
-        Assert.assertTrue(list.size()> 0);
+        Pageable pageable= (Pageable) PageRequest.of(1,1);
+        Page<ProductInfo> page=productInfoRepository.findByProductStatus(0,pageable);
+        Assert.assertTrue(page.hasContent());
+    }
+    @Test
+    public void findAll(){
+        Pageable pageable= (Pageable) PageRequest.of(1,1);
+        Page<ProductInfo> page=productInfoRepository.findAll(pageable);
+        System.out.println(page.getContent());
+        Assert.assertTrue(page.hasContent());
     }
 }
 
