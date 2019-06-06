@@ -10,4 +10,11 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
-    show-sql: true
+  http:
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true
+mybatis:
+  type-aliases-package: com.example.order.dao
+  mapper-locations: classpath:mapper/*.xml
