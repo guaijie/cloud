@@ -1,6 +1,7 @@
 package com.example.product.server.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -25,6 +26,9 @@ public class ProductInfo {
 
     @Column(name="status")
     private Integer productStatus;
+
+//    @Column(name="type")
+//    private String productType;
 
     @ManyToOne(fetch= FetchType.LAZY,cascade = {CascadeType.ALL})
     @JoinColumn(name="type")

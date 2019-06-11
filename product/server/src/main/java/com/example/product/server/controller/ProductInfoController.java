@@ -117,9 +117,10 @@ public class ProductInfoController {
     }
 
     @RequestMapping("productInfosForOrder")
-    public List<ProductInfoCO> getProductInfosForOrder(
-            @RequestParam(required = false) List<String> productIdList
+    public List<ProductInfoCO> getProductInfosByProductIdIn(
+            @RequestParam(required = true) List<String> productIdList
     ){
+        log.info(productIdList.toString());
         List<ProductInfo> productInfoList = productInfoService.findProductInfosByProductIdIn(productIdList);
         List<ProductInfoCO> productInfoCOList = new ArrayList<ProductInfoCO>();
         for(ProductInfo productInfo:productInfoList){

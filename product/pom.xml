@@ -13,45 +13,20 @@
     <artifactId>product</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-
     <name>product</name>
     <description>Demo project for Spring Boot</description>
 
     <modules>
-        <module>client</module>
         <module>server</module>
+        <module>client</module>
         <module>common</module>
     </modules>
 
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Hoxton.BUILD-SNAPSHOT</spring-cloud.version>
-        <product-common.version>Hoxton.BUILD-SNAPSHOT</product-common.version>
+        <product-common.version>0.0.1-SNAPSHOT</product-common.version>
     </properties>
-
-    <!--发布时将这些依赖分配给指定的模块-->
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>2.9.0.pr4</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
 
     <dependencyManagement>
         <dependencies>
@@ -64,20 +39,11 @@
             </dependency>
             <dependency>
                 <groupId>com.example</groupId>
-                <artifactId>common</artifactId>
+                <artifactId>product-common</artifactId>
                 <version>${product-common.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
     <repositories>
         <repository>

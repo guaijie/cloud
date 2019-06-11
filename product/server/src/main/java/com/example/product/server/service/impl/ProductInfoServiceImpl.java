@@ -1,6 +1,9 @@
 package com.example.product.server.service.impl;
 
+import com.example.product.server.dto.CartDTO;
 import com.example.product.server.entity.ProductInfo;
+import com.example.product.server.enums.ExceptionEnum;
+import com.example.product.server.exception.ProductException;
 import com.example.product.server.repository.ProductInfoRepository;
 import com.example.product.server.service.ProductInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +11,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductInfoServiceImpl implements ProductInfoService {
@@ -49,5 +54,30 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     public List<ProductInfo> findProductInfosByProductIdIn(List<String> productIdList) {
         List<ProductInfo> list= productInfoRepository.findByProductIdIn(productIdList);
         return list;
+    }
+
+    @Override
+    @Transactional
+    public void decreseStock(List<CartDTO> cartDTOList) {
+        for(CartDTO cartDTO:cartDTOList){
+            Optional<ProductInfo> productInfoOptional=productInfoRepository.findById(cartDTO.getProductId());
+            //判断商品是否存在
+            if(!productInfoOptional.isPresent()){
+                throw new ProductException(ExceptionEnum.PRODUCT_NOT_EXIST);
+            }
+            ProductInfo productInfo = productInfoOptional.get();
+
+            Integer nextStock = productInfo.getProductStock() - cartDTO.getProductCounts();
+
+            //库存是否充足
+            if(nextStock < 0){
+                throw new ProductException(ExceptionEnum.PRODUCT_STOCK_ERROR);
+            }
+
+            productInfo.setProductStock(nextStock);
+
+            productInfoRepository.save(productInfo);
+
+        }
     }
 }

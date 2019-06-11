@@ -3,6 +3,7 @@ package com.example.product.client;
 import com.example.product.common.co.ProductInfoCO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -10,5 +11,5 @@ import java.util.List;
 public interface ProductClient {
 
     @RequestMapping("product/productInfosForOrder")
-    List<ProductInfoCO> getProductInfosByProductIdIn(List<String> productIdList);
+    List<ProductInfoCO> getProductInfosByProductIdIn(@RequestParam(required = false) List<String> productIdList);
 }

@@ -1,7 +1,7 @@
 package com.example.product.server.repository;
 
+import com.example.product.server.ServerApplicationTests;
 import com.example.product.server.entity.ProductInfo;
-import com.example.server.ServerApplicationTests;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
