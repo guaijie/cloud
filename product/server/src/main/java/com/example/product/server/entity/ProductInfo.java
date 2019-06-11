@@ -3,12 +3,14 @@ package com.example.product.server.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Data
 @Entity
+@DynamicUpdate
 public class ProductInfo {
 
     @Id
@@ -27,8 +29,6 @@ public class ProductInfo {
     @Column(name="status")
     private Integer productStatus;
 
-//    @Column(name="type")
-//    private String productType;
 
     @ManyToOne(fetch= FetchType.LAZY,cascade = {CascadeType.ALL})
     @JoinColumn(name="type")
@@ -40,6 +40,10 @@ public class ProductInfo {
     }
 
     public String getCategoryType(){
+        return category.getCategoryType();
+    }
+
+    public String getCategoryId(){
         return category.getCategoryType();
     }
 

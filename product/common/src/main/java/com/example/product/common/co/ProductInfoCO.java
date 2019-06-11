@@ -15,4 +15,8 @@ public class ProductInfoCO {
         @JsonProperty("price")
         private Double productPrice;
 
+        private String categoryName;
+
+        private String categoryType;
+
 }

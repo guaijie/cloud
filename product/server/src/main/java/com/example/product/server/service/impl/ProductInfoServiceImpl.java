@@ -1,6 +1,6 @@
 package com.example.product.server.service.impl;
 
-import com.example.product.server.dto.CartDTO;
+import com.example.product.common.co.CartDTO;
 import com.example.product.server.entity.ProductInfo;
 import com.example.product.server.enums.ExceptionEnum;
 import com.example.product.server.exception.ProductException;
@@ -11,8 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,6 +65,7 @@ public class ProductInfoServiceImpl implements ProductInfoService {
             if(!productInfoOptional.isPresent()){
                 throw new ProductException(ExceptionEnum.PRODUCT_NOT_EXIST);
             }
+
             ProductInfo productInfo = productInfoOptional.get();
 
             Integer nextStock = productInfo.getProductStock() - cartDTO.getProductCounts();
@@ -73,8 +74,11 @@ public class ProductInfoServiceImpl implements ProductInfoService {
             if(nextStock < 0){
                 throw new ProductException(ExceptionEnum.PRODUCT_STOCK_ERROR);
             }
+            System.out.println(productInfo.toString());
 
             productInfo.setProductStock(nextStock);
+
+            System.out.println("productInfo"+productInfo);
 
             productInfoRepository.save(productInfo);
 

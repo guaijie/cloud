@@ -1,6 +1,6 @@
 package com.example.product.server.service;
 
-import com.example.product.server.dto.CartDTO;
+import com.example.product.common.co.CartDTO;
 import com.example.product.server.entity.ProductInfo;
 import org.springframework.data.domain.Page;
 

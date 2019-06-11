@@ -2,11 +2,13 @@ package com.example.order.server.entity;
 
 import lombok.Data;
 
+import javax.persistence.Id;
 import java.util.Date;
 
 @Data
-public class OrderDetail {
+public class DetailOrder {
 
+    @Id
     private String id;
 
     private String orderId;
@@ -15,9 +17,13 @@ public class OrderDetail {
 
     private String productName;
 
-    private Double productPice;
+    private Double productPrice;
 
     private Integer productCounts;
+
+    private String categoryName;
+
+    private String categoryType;
 
     private Date createTime;
 

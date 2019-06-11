@@ -1,10 +1,10 @@
 package com.example.order.server.service;
 
-import com.example.order.server.dto.OrderDTO;
+import com.example.order.server.dto.UserOrderDTO;
 
 public interface OrderService {
 
-    OrderDTO createOrder(OrderDTO orderDTO);
+    UserOrderDTO createOrder(UserOrderDTO userOrderDTO);
 }
 
 

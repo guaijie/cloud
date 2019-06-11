@@ -1,11 +1,12 @@
-package com.example.order.server.entity;
+package com.example.order.server.dto;
 
+import com.example.order.server.entity.DetailOrder;
 import lombok.Data;
 
-import java.util.Date;
+import java.util.List;
 
 @Data
-public class OrderUser {
+public class UserOrderDTO {
 
     private String orderId;
 
@@ -17,7 +18,5 @@ public class OrderUser {
 
     private Integer payStatus;
 
-    private Date createTime;
-
-    private Date updateTime;
+    private List<DetailOrder> detailOrderList;
 }

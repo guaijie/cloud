@@ -7,7 +7,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@MapperScan(basePackages = "com.example.order.dao")
+@MapperScan(basePackages = "com.example.order.server.dao")
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = "com.example.product.client" )
 public class ServerApplication {

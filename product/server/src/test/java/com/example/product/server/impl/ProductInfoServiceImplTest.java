@@ -1,7 +1,7 @@
 package com.example.product.server.impl;
 
+import com.example.product.common.co.CartDTO;
 import com.example.product.server.ServerApplicationTests;
-import com.example.product.server.dto.CartDTO;
 import com.example.product.server.entity.ProductInfo;
 import com.example.product.server.service.ProductInfoService;
 import org.junit.Assert;
