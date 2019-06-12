@@ -3,19 +3,38 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.order.server.dao.UserOrderDao">
-    <!--<resultMap id="addUserOrder" type="com.clown.design.entity.Role">-->
-    <!--<id column="id" property="id"/>-->
-    <!--<result column="roleName" property="roleName"/>-->
-    <!--<result column="password" property="password"/>-->
-    <!--<result column="roleType" property="roleType"/>-->
-    <!--</resultMap>-->
+    <resultMap id="userOrder" type="com.example.order.server.vo.UserOrderVO">
+        <id column="order_id" property="orderId"/>
+        <result column="total" property="total"/>
+        <result column="user_id" property="userId"/>
+        <result column="order_status" property="orderStatus"/>
+        <result column="pay_status" property="payStatus"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
 
     <insert id="addUserOrder" parameterType="com.example.order.server.entity.UserOrder">
         INSERT INTO order_user(user_id,order_id,order_amount) VALUES (#{userId},#{orderId},#{orderAmount})
     </insert>
 
-    <!--<select id="selectRoleByPassWord" parameterType="Map" resultType="com.clown.design.entity.Role">-->
-    <!--SELECT * FROM role WHERE roleName = #{roleName} AND passWord = #{passWord}-->
-    <!--</select>-->
+    <select id="getUserOrderByPage" parameterType="com.example.order.server.dto.UserOrderViewDTO" resultMap="userOrder">
+        SELECT * ,COUNT(*) OVER() total FROM order_user
+        WHERE order_status=IFNULL(#{orderStatus},order_status)
+        AND pay_status=IFNULL(#{payStatus},pay_status)
+        ORDER BY create_time DESC
+        LIMIT #{start}, #{size}
+    </select>
+
+    <delete id="deleteUserOrder" parameterType="Map">
+        DELETE FROM order_user WHERE user_id=#{userId} AND order_id=#{orderId}
+    </delete>
+
+    <update id="updateUserOrderStatus" parameterType="Map">
+        UPDATE order_user SET order_status=#{orderStatus} WHERE order_id = #{orderId} AND user_id = #{userId}
+    </update>
+
+    <update id="updateUserPayStatus" parameterType="Map">
+        UPDATE order_user SET pay_status=#{payStatus} WHERE order_id = #{orderId} AND user_id = #{userId}
+    </update>
 
 </mapper>

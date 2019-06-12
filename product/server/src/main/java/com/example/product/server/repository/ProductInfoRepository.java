@@ -22,6 +22,7 @@ public interface ProductInfoRepository extends JpaRepository<ProductInfo,String>
     //根据类目和状态查询
     Page<ProductInfo> findByCategory_CategoryTypeAndProductStatus(String categoryType, Integer productStatus, Pageable pageable);
 
+
     //根据商品id查询
     List<ProductInfo> findByProductIdIn(List<String> productIdList);
 }

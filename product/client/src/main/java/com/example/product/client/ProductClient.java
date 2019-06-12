@@ -1,7 +1,6 @@
 package com.example.product.client;
 
-import com.example.product.common.co.CartDTO;
-import com.example.product.common.co.ProductInfoCO;
+import com.example.product.common.co.*;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,4 +17,15 @@ public interface ProductClient {
 
     @PostMapping("product/decreaseStock")
     void decreaseStock(@RequestBody List<CartDTO> cartDTOList);
+
+    @RequestMapping("category/categories")
+    public ResultVO getCategories(@RequestParam(required = false) String categoryType);
+
+    @RequestMapping("product/productInfos")
+    public ResultByPageVO<ProductInfoVO> getProductInfos(
+            @RequestParam(required=false) Integer status,
+            @RequestParam(required = false) String type,
+            @RequestParam(required = false) Integer pages,
+            @RequestParam(required = false) Integer counts
+    );
 }

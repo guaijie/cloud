@@ -3,12 +3,16 @@ package com.example.order.server.service.impl;
 
 import com.example.order.server.dao.DetailOrderDao;
 import com.example.order.server.dao.UserOrderDao;
+import com.example.order.server.dto.DetailOrderViewDTO;
 import com.example.order.server.dto.UserOrderDTO;
+import com.example.order.server.dto.UserOrderViewDTO;
 import com.example.order.server.entity.DetailOrder;
 import com.example.order.server.entity.UserOrder;
 import com.example.order.server.service.OrderService;
 import com.example.order.server.util.MD5;
 import com.example.order.server.util.UniqKey;
+import com.example.order.server.vo.DetailOrderVO;
+import com.example.order.server.vo.UserOrderVO;
 import com.example.product.client.ProductClient;
 import com.example.product.common.co.CartDTO;
 import com.example.product.common.co.ProductInfoCO;
@@ -31,13 +35,13 @@ public class OrderServiceImpl implements OrderService {
      * 订单入库
      * */
 
-    @Autowired
+    @Autowired(required = false)
     private UserOrderDao userOrderDao;
 
     @Autowired
     private ProductClient productClient;
 
-    @Autowired
+    @Autowired(required = false)
     private DetailOrderDao detailOrderDao;
 
     @Override
@@ -83,5 +87,31 @@ public class OrderServiceImpl implements OrderService {
         userOrderDao.addUserOrder(userOrder);
 
         return userOrderDTO;
+    }
+
+    @Override
+    public List<UserOrderVO> getUserOrderByPage(UserOrderViewDTO userOrderViewDTO) {
+
+        List<UserOrderVO> userOrderList = userOrderDao.getUserOrderByPage(userOrderViewDTO);
+
+        return userOrderList;
+    }
+
+    @Override
+    public List<DetailOrderVO> getDetailOrderByPage(DetailOrderViewDTO detailOrderViewDTO) {
+
+        List<DetailOrderVO> detailOrderVOList = detailOrderDao.getDetailOrderByPage(detailOrderViewDTO);
+
+        return detailOrderVOList;
+    }
+
+    @Override
+    public String deleteUserOrder(String userId, String orderId) {
+        int flag = userOrderDao.deleteUserOrder(userId,orderId);
+        if(flag==1){
+            detailOrderDao.deleteOrderDetail(orderId);
+            return orderId;
+        }
+        return null;
     }
 }

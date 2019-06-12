@@ -90,32 +90,6 @@ public class ProductInfoController {
     }
 
 
-    @RequestMapping("testProductInfos")
-    public List<ProductInfoVO> testProductInfos(){
-
-        Page<ProductInfo> pageWrapper=productInfoService.findProductInfosByStatus(0,0,10);
-
-        List<ProductInfo> productInfoList = pageWrapper.getContent();
-
-        List<ProductInfoVO> productInfoVOList = new ArrayList<ProductInfoVO>();
-
-        for(ProductInfo productInfo : productInfoList){
-            ProductInfoVO productInfoVO = new ProductInfoVO();
-            BeanUtils.copyProperties(productInfo,productInfoVO);
-            productInfoVOList.add(productInfoVO);
-
-        }
-
-        return productInfoVOList;
-    }
-
-
-
-    @RequestMapping("hello")
-    public String sayHello(){
-       return "hello";
-    }
-
     @RequestMapping("productInfosForOrder")
     public List<ProductInfoCO> getProductInfosByProductIdIn(
             @RequestParam(required = true) List<String> productIdList
@@ -136,11 +110,4 @@ public class ProductInfoController {
         System.out.println(cartDTOList.toString());
         productInfoService.decreseStock(cartDTOList);
     }
-
-    @PostMapping("/testDecreaseStock")
-    public void testDecreaseStock(){
-        CartDTO cartDTO = new CartDTO("0000000003",4);
-        productInfoService.decreseStock(Arrays.asList(cartDTO));
-    }
-
 }
