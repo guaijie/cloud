@@ -46,6 +46,11 @@
             <groupId>com.example</groupId>
             <artifactId>product-common</artifactId>
         </dependency>
+        <!--检测管理工具-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

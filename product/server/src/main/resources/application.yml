@@ -14,3 +14,7 @@ spring:
         show-sql: true
 server:
     port: 7080
+
+random:
+    int: ${random.int}
+    

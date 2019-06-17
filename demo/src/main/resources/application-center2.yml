@@ -1,0 +1,9 @@
+server:
+  port: 1112
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://center1:1111/eureka/, http://center3:1113/eureka/
+  instance:
+    hostname: center2

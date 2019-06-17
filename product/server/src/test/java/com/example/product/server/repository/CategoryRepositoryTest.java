@@ -2,6 +2,7 @@ package com.example.product.server.repository;
 
 import com.example.product.server.ServerApplicationTests;
 import com.example.product.server.entity.Category;
+import lombok.Value;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ public class CategoryRepositoryTest extends ServerApplicationTests {
 
     @Autowired
     CategoryRepository categoryRepository;
+
 
     @Test
     public void findAll(){

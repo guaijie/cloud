@@ -17,3 +17,6 @@ mybatis:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 server:
   port: 6080
+feign:
+  hystrix:
+    enabled: true

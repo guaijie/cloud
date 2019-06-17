@@ -15,8 +15,11 @@ public class ProductInfoVO {
     @JsonProperty("price")
     private Double productPrice;
 
-    @JsonProperty("description")
+    @JsonProperty("desc")
     private String productDesc;
+
+    @JsonProperty("stock")
+    private Integer productStock;
 
     private String categoryName;
 
