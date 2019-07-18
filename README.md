@@ -1,6 +1,6 @@
-### micro service
+## 微服务
 
-### keywords
+### 关键字
 1. a suit of small services
 > 一系列微小的服务共同组成
 2. running in its own process
@@ -14,8 +14,8 @@
 
 ### 微服务的特点
 1. 异构
-  - 不同语言(例如可以使用node的eureka-js-client生成的EurekaClient注册到Java的EurekaServer上去)
-  - 不同类型数据库
+- 不同语言(例如可以使用node的eureka-js-client生成的EurekaClient注册到Java的EurekaServer上去)
+- 不同类型数据库
 2. 颗粒化
 3. 独立部署
 4. 独立业务开发
@@ -34,6 +34,11 @@
   - 扩展性不够
 2. 分布式架构
 > 旨在支持应用程序和服务的开发，可以利用物理架构由 **多个自治的处理元素** ，**不共享主内存**，**但通过网络发送消息合作**。
+
+### Spring Cloud BOM
+
+1. spring cloud config
+
 
  ### 微服务架构的基础架构/组件
 1. 服务注册发现(服务间通信)
