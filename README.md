@@ -18,7 +18,7 @@
 
 ### 架构演进
 
-**单体架构**
+#### 单体架构
 - 优点：
   - 容易测试
   - 容易部署
@@ -29,15 +29,65 @@
   - 稳定性不高
   - 扩展性不够
   
-**分布式架构**
-> 旨在支持应用程序和服务的开发，可以利用物理架构由 **多个自治的处理元素** ，**不共享主内存**，**但通过网络发送消息合作**。
+#### 分布式架构
+旨在支持应用程序和服务的开发，可以利用物理架构由 **多个自治的处理元素** ，**不共享主内存**，**但通过网络发送消息合作**。
 
 ### Spring Cloud BOM
 
--  spring cloud config
+<ul>
+    <li>
+        <h4><a href="https://spring.io/projects/spring-cloud-config#learn">Spring Cloud Config</a><h4>
+        <p>使用git或svn集中管理配置，保证某些隐私信息的安全，同时可结合spring cloud bus实现实时刷新。</p>
+    </li>
+    <li>
+        <h4><a href="https://spring.io/projects/spring-cloud-netflix#learn">Spring Cloud Netflix</a><h4>
+        <p>将Netflix公司OSS组件整合进spring cloud中,其中包括：</p>
+        <ul>
+            <li>
+                <h4>archaius</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>eureka</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>hystrix</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>ribbon</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>turbine</h4>
+                <p></p>
+            </li>
+            <li>
+                <h4>zuul</h4>
+                <p></p>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <h4><a href="https://spring.io/projects/spring-cloud-bus#learn">Spring Cloud Bus</a><h4>
+        <p>实现修改版本库的配置实时刷新。</p>
+    </li>  
+    <li>
+        <h4><a href="https://spring.io/projects/spring-cloud-consul#learn">Spring Cloud Consul</a><h4>
+        <p></p>
+    </li>     
+    <li>
+        <h4><a href="https://spring.io/projects/spring-cloud-gateway#learn">Spring Cloud Gateway</a><h4>
+        <p>由spring mvc开发组构建的基于spring mvc之上的API网关组件。</p>
+    </li>     
+    <li>
+        <h4><a href="https://spring.io/projects/spring-cloud-sleuth#learn">Spring Cloud Sleuth</a><h4>
+        <p>用于链路追踪和服务定位，可快速定位到服务故障点，与 Zipkin, HTrace and log-based 兼容。</p>
+    </li>    
+</ul>
 
-
- ### 微服务架构的基础架构/组件
+### 微服务架构的基础架构/组件
 1. 服务注册发现(服务间通信)
   - 服务的提供方：注册
   - 服务的调用方：发现
