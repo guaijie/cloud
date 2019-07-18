@@ -36,11 +36,11 @@
 
 <ul>
     <li>
-        <h4><a href="https://spring.io/projects/spring-cloud-config#learn">Spring Cloud Config</a><h4>
+        <h4><a href="https://spring.io/projects/spring-cloud-config#learn">Spring Cloud Config</a></h4>
         <p>配置管理开发工具包，可以让你把配置放到远程服务器，目前支持本地存储、Git以及Subversion，保证某些隐私信息的安全，同时可结合spring cloud bus实现实时刷新。</p>
     </li>
     <li>
-        <h4><a href="https://spring.io/projects/spring-cloud-netflix#learn">Spring Cloud Netflix</a><h4>
+        <h4><a href="https://spring.io/projects/spring-cloud-netflix#learn">Spring Cloud Netflix</a></h4>
         <p>将Netflix公司OSS组件整合进spring cloud中，其中包括：</p>
         <ul>
             <li>
@@ -70,43 +70,43 @@
         </ul>
     </li>
     <li>
-        <h4><a href="https://spring.io/projects/spring-cloud-bus#learn">Spring Cloud Bus</a><h4>
+        <h4><a href="https://spring.io/projects/spring-cloud-bus#learn">Spring Cloud Bus</a></h4>
         <p>事件、消息总线，用于在集群（例如，配置变化事件）中传播状态变化，可与Spring Cloud Config联合实现热部署。</p>
     </li>  
     <li>
-        <h4><a href="https://spring.io/projects/spring-cloud-consul#learn">Spring Cloud Consul</a><h4>
+        <h4><a href="https://spring.io/projects/spring-cloud-consul#learn">Spring Cloud Consul</a></h4>
         <p>封装了Consul操作，consul是一个服务发现与配置工具，与Docker容器可以无缝集成。</p>
     </li>     
     <li>
-        <h4><a href="https://spring.io/projects/spring-cloud-gateway#learn">Spring Cloud Gateway</a><h4>
+        <h4><a href="https://spring.io/projects/spring-cloud-gateway#learn">Spring Cloud Gateway</a></h4>
         <p>由spring mvc开发组构建的基于spring mvc之上的API网关组件。</p>
     </li>     
     <li>
-        <h4><a href="https://spring.io/projects/spring-cloud-sleuth#learn">Spring Cloud Sleuth</a><h4>
+        <h4><a href="https://spring.io/projects/spring-cloud-sleuth#learn">Spring Cloud Sleuth</a></h4>
         <p>用于链路追踪和服务定位，可快速定位到服务故障点，封装了Dapper,Zipkin和HTrace操作。</p>
     </li>  
     <li>
-        <h4><a href="https://spring.io/projects/spring-cloud-security#learn">Spring Cloud Security</a><h4>
+        <h4><a href="https://spring.io/projects/spring-cloud-security#learn">Spring Cloud Security</a></h4>
         <p>安全工具包，为你的应用程序添加安全控制，主要是指OAuth2。</p>
     </li>  
     <li>
-        <h4><a href="https://spring.io/projects/spring-cloud-dataflow#learn">Spring Cloud Data Flow</a><h4>
+        <h4><a href="https://spring.io/projects/spring-cloud-dataflow#learn">Spring Cloud Data Flow</a></h4>
         <p>大数据操作工具，通过命令行方式操作数据流。</p>
     </li>  
     <li>
-        <h4><a href="https://spring.io/projects/spring-cloud-zookeeper#learn">Spring Cloud Zookeeper</a><h4>
+        <h4><a href="https://spring.io/projects/spring-cloud-zookeeper#learn">Spring Cloud Zookeeper</a></h4>
         <p>操作Zookeeper的工具包，用于使用zookeeper方式的服务注册和发现。</p>
     </li>  
     <li>
-        <h4><a href="https://spring.io/projects/spring-cloud-stream#learn">Spring Cloud Stream</a><h4>
+        <h4><a href="https://spring.io/projects/spring-cloud-stream#learn">Spring Cloud Stream</a></h4>
         <p>数据流操作开发包，封装了与Redis,Rabbit、Kafka等发送接收消息。</p>
     </li>  
     <li>
-        <h4><a href="https://github.com/spring-cloud/spring-cloud-cli">Spring Cloud CLI</a><h4>
+        <h4><a href="https://github.com/spring-cloud/spring-cloud-cli">Spring Cloud CLI</a></h4>
         <p>基于 Spring Boot CLI，可以让你以命令行方式快速建立云组件。</p>
     </li> 
     <li>
-        <h4><a href="https://cloud.spring.io/spring-cloud-cloudfoundry/">Spring Cloud Cloudfoundry</a><h4>
+        <h4><a href="https://cloud.spring.io/spring-cloud-cloudfoundry/">Spring Cloud Cloudfoundry</a></h4>
         <p>通过Oauth2协议绑定服务到CloudFoundry，CloudFoundry是VMware推出的开源PaaS云平台。</p>
     </li>  
 </ul>
