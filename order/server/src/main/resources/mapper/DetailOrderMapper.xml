@@ -18,11 +18,14 @@
     </resultMap>
 
     <insert id="addOrderDetail" parameterType="com.example.order.server.entity.DetailOrder">
-        INSERT INTO order_detail(id,order_id,product_id,product_name,product_price,product_counts,category_name,category_type)
-        VALUES (#{id},#{orderId},#{productId},#{productName},#{productPrice},#{productCounts},#{categoryName},#{categoryType})
+        INSERT INTO
+        order_detail(id,order_id,product_id,product_name,product_price,product_counts,category_name,category_type)
+        VALUES
+        (#{id},#{orderId},#{productId},#{productName},#{productPrice},#{productCounts},#{categoryName},#{categoryType})
     </insert>
 
-    <select id="getDetailOrderByPage" parameterType="com.example.order.server.dto.DetailOrderViewDTO" resultMap="detailOrder">
+    <select id="getDetailOrderByPage" parameterType="com.example.order.server.dto.DetailOrderViewDTO"
+            resultMap="detailOrder">
         SELECT * ,COUNT(*) OVER() total FROM order_detail
         WHERE order_Id=IFNULL(#{orderId},order_Id)
         ORDER BY create_time DESC

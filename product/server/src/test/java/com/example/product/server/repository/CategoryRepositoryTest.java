@@ -19,16 +19,18 @@ public class CategoryRepositoryTest extends ServerApplicationTests {
 
 
     @Test
-    public void findAll(){
+    public void findAll() {
         List<Category> list = categoryRepository.findAll();
-        Assert.assertTrue(list.size()>0);
+        Assert.assertTrue(list.size() > 0);
     }
 
     @Test
-    public void findALLByCategoryTypeIn(){
-        List<Category> list = categoryRepository.findAllByCategoryTypeIn(Arrays.asList("00001","00002"));
-        Assert.assertTrue(list.size()>0);
-    };
+    public void findALLByCategoryTypeIn() {
+        List<Category> list = categoryRepository.findAllByCategoryTypeIn(Arrays.asList("00001", "00002"));
+        Assert.assertTrue(list.size() > 0);
+    }
+
+    ;
 
 
 }

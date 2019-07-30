@@ -47,7 +47,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public UserOrderDTO createOrder(UserOrderDTO userOrderDTO) {
-        String orderId = MD5.digest(UniqKey.genUniqKey(),userOrderDTO.getUserId());
+        String orderId = MD5.digest(UniqKey.genUniqKey(), userOrderDTO.getUserId());
         // 查询商品信息
         List<DetailOrder> detailOrderList = userOrderDTO.getDetailOrderList();
         List<String> productIdList = detailOrderList.stream()
@@ -57,14 +57,14 @@ public class OrderServiceImpl implements OrderService {
         List<ProductInfoCO> productInfoCOList = productClient.getProductInfosByProductIdIn(productIdList);
 
         // 计算总金额
-        Double orderAmout=0.0;
-        for(DetailOrder detailOrder:detailOrderList){
-            for(ProductInfoCO productInfoCO:productInfoCOList){
-                if(detailOrder.getProductId().equals(productInfoCO.getProductId())){
-                    orderAmout += productInfoCO.getProductPrice()*detailOrder.getProductCounts();
-                    BeanUtils.copyProperties(productInfoCO,detailOrder);
+        Double orderAmout = 0.0;
+        for (DetailOrder detailOrder : detailOrderList) {
+            for (ProductInfoCO productInfoCO : productInfoCOList) {
+                if (detailOrder.getProductId().equals(productInfoCO.getProductId())) {
+                    orderAmout += productInfoCO.getProductPrice() * detailOrder.getProductCounts();
+                    BeanUtils.copyProperties(productInfoCO, detailOrder);
                     detailOrder.setOrderId(orderId);
-                    String detailId = MD5.digest(UniqKey.genUniqKey(),orderId);
+                    String detailId = MD5.digest(UniqKey.genUniqKey(), orderId);
                     detailOrder.setId(detailId);
                     detailOrderDao.addOrderDetail(detailOrder);
                 }
@@ -72,7 +72,7 @@ public class OrderServiceImpl implements OrderService {
         }
 
         // 扣库存
-        List<CartDTO>  cartDTOList = userOrderDTO.getDetailOrderList()
+        List<CartDTO> cartDTOList = userOrderDTO.getDetailOrderList()
                 .stream()
                 .map(e -> new CartDTO(e.getProductId(), e.getProductCounts()))
                 .collect(Collectors.toList());
@@ -83,7 +83,7 @@ public class OrderServiceImpl implements OrderService {
 
         userOrderDTO.setOrderId(orderId);
         userOrderDTO.setOrderAmount(orderAmout);
-        BeanUtils.copyProperties(userOrderDTO,userOrder);
+        BeanUtils.copyProperties(userOrderDTO, userOrder);
         userOrderDao.addUserOrder(userOrder);
 
         return userOrderDTO;
@@ -107,8 +107,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public String deleteUserOrder(String userId, String orderId) {
-        int flag = userOrderDao.deleteUserOrder(userId,orderId);
-        if(flag==1){
+        int flag = userOrderDao.deleteUserOrder(userId, orderId);
+        if (flag == 1) {
             detailOrderDao.deleteOrderDetail(orderId);
             return orderId;
         }

@@ -19,7 +19,7 @@ public class productInfoController {
     ProductClient productClient;
 
     @RequestMapping("categories")
-    public ResultVO getCategories(@RequestParam(required = false) String categoryType){
+    public ResultVO getCategories(@RequestParam(required = false) String categoryType) {
 
         ResultVO resultVO = productClient.getCategories(categoryType);
 
@@ -28,13 +28,13 @@ public class productInfoController {
 
     @RequestMapping("productInfos")
     public ResultByPageVO<ProductInfoVO> getProductInfos(
-            @RequestParam(required=false) Integer status,
+            @RequestParam(required = false) Integer status,
             @RequestParam(required = false) String type,
             @RequestParam(required = false) Integer pages,
             @RequestParam(required = false) Integer counts
-    ){
+    ) {
 
-        ResultByPageVO resultByPageVO = productClient.getProductInfos(status,type,pages,counts);
+        ResultByPageVO resultByPageVO = productClient.getProductInfos(status, type, pages, counts);
 
         return resultByPageVO;
     }

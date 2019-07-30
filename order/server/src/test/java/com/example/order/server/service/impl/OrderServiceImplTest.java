@@ -33,11 +33,11 @@ class OrderServiceImplTest extends ServerApplicationTests {
     }
 
     @Test
-    public void getDetailOrderByPage(){
-        DetailOrderViewDTO detailOrderViewDTO = new DetailOrderViewDTO("b567c0c5616794f6e4b9252d6efd65f5",0,5);
+    public void getDetailOrderByPage() {
+        DetailOrderViewDTO detailOrderViewDTO = new DetailOrderViewDTO("b567c0c5616794f6e4b9252d6efd65f5", 0, 5);
         List<DetailOrderVO> detailOrderList = orderService.getDetailOrderByPage(detailOrderViewDTO);
 
         System.out.println(detailOrderList.toString());
-        Assert.assertTrue(detailOrderList.size()>0);
+        Assert.assertTrue(detailOrderList.size() > 0);
     }
 }

@@ -16,7 +16,7 @@ public interface OrderService {
 
     List<DetailOrderVO> getDetailOrderByPage(DetailOrderViewDTO detailOrderViewDTO);
 
-    String deleteUserOrder(String userId,String orderId);
+    String deleteUserOrder(String userId, String orderId);
 }
 
 

@@ -14,7 +14,7 @@ public class HelloController {
     private HelloClient helloClient;
 
     @RequestMapping("/info/{msg}")
-    public String sayHello(@PathVariable("msg") String msg){
+    public String sayHello(@PathVariable("msg") String msg) {
         String message = helloClient.sayHello(msg);
         return message;
     }

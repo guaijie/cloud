@@ -3,7 +3,7 @@ package com.example.order.server.vo;
 import lombok.Data;
 
 @Data
-public class ResultVO<T>{
+public class ResultVO<T> {
 
     private Integer code;
 

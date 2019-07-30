@@ -28,42 +28,42 @@ public class ProductInfoController {
     @Autowired
     private CategoryService categoryService;
 
-    private final Integer COUNTS=10;
+    private final Integer COUNTS = 10;
 
-    private final Integer PAGES=1;
+    private final Integer PAGES = 1;
 
     /*
-    * 根据类目和状态分页获取产品信息
-    * */
+     * 根据类目和状态分页获取产品信息
+     * */
     @RequestMapping("productInfos")
     public ResultByPageVO<ProductInfoVO> getProductInfos(
-            @RequestParam(required=false) Integer status,
+            @RequestParam(required = false) Integer status,
             @RequestParam(required = false) String type,
             @RequestParam(required = false) Integer pages,
             @RequestParam(required = false) Integer counts
-    ){
+    ) {
         Page<ProductInfo> pageWrapper;
 
-        if(pages==null || pages.toString().equals("")){
-            pages=PAGES;
+        if (pages == null || pages.toString().equals("")) {
+            pages = PAGES;
         }
-        if(counts==null || counts.toString().equals("")){
-            counts=COUNTS;
+        if (counts == null || counts.toString().equals("")) {
+            counts = COUNTS;
         }
-        pages=pages-1;
+        pages = pages - 1;
 
-        if((status==null || status.toString().equals("") ) && (type==null || type.equals(""))){
+        if ((status == null || status.toString().equals("")) && (type == null || type.equals(""))) {
             System.out.println(1);
-            pageWrapper=productInfoService.findProductInfosByPages(pages,counts);
-        }else if(type==null || type.equals("")){
+            pageWrapper = productInfoService.findProductInfosByPages(pages, counts);
+        } else if (type == null || type.equals("")) {
             System.out.println(2);
-            pageWrapper = productInfoService.findProductInfosByStatus(status,pages,counts);
-        }else if(status==null || status.toString().equals("")){
+            pageWrapper = productInfoService.findProductInfosByStatus(status, pages, counts);
+        } else if (status == null || status.toString().equals("")) {
             System.out.println(3);
-            pageWrapper = productInfoService.findProductInfosByType(type,pages,counts);
-        }else{
+            pageWrapper = productInfoService.findProductInfosByType(type, pages, counts);
+        } else {
             System.out.println(4);
-            pageWrapper = productInfoService.findProductInfosByTypeAndStatus(type,status,pages,counts);
+            pageWrapper = productInfoService.findProductInfosByTypeAndStatus(type, status, pages, counts);
         }
 
         //获取产品信息列表
@@ -74,17 +74,17 @@ public class ProductInfoController {
         List<ProductInfoVO> productInfoVOList = new ArrayList<ProductInfoVO>();
 
         for (ProductInfo productInfo : productInfoList) {
-            ProductInfoVO productInfoVO =new ProductInfoVO();
-            BeanUtils.copyProperties(productInfo,productInfoVO);
+            ProductInfoVO productInfoVO = new ProductInfoVO();
+            BeanUtils.copyProperties(productInfo, productInfoVO);
             productInfoVOList.add(productInfoVO);
         }
 
-        ResultByPageVO resultByPageVO=new ResultByPageVO();
+        ResultByPageVO resultByPageVO = new ResultByPageVO();
         resultByPageVO.setCode(200);
         resultByPageVO.setMsg("产品信息查询成功！");
         resultByPageVO.setDataList(productInfoVOList);
         resultByPageVO.setCurrentNumber(currentNumber);
-        resultByPageVO.setCurrentPage(pageWrapper.getNumber()+1);
+        resultByPageVO.setCurrentPage(pageWrapper.getNumber() + 1);
         resultByPageVO.setTotalNumber(pageWrapper.getTotalElements());
         return resultByPageVO;
     }
@@ -93,20 +93,20 @@ public class ProductInfoController {
     @RequestMapping("productInfosForOrder")
     public List<ProductInfoCO> getProductInfosByProductIdIn(
             @RequestParam(required = true) List<String> productIdList
-    ){
+    ) {
 
         List<ProductInfo> productInfoList = productInfoService.findProductInfosByProductIdIn(productIdList);
         List<ProductInfoCO> productInfoCOList = new ArrayList<ProductInfoCO>();
-        for(ProductInfo productInfo:productInfoList){
+        for (ProductInfo productInfo : productInfoList) {
             ProductInfoCO productInfoCO = new ProductInfoCO();
-            BeanUtils.copyProperties(productInfo,productInfoCO);
+            BeanUtils.copyProperties(productInfo, productInfoCO);
             productInfoCOList.add(productInfoCO);
         }
         return productInfoCOList;
     }
 
     @PostMapping("/decreaseStock")
-    public void decreaseStock(@RequestBody List<CartDTO> cartDTOList){
+    public void decreaseStock(@RequestBody List<CartDTO> cartDTOList) {
         System.out.println(cartDTOList.toString());
         productInfoService.decreseStock(cartDTOList);
     }

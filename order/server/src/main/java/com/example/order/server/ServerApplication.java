@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @MapperScan(basePackages = "com.example.order.server.dao")
 @EnableDiscoveryClient
-@EnableFeignClients(basePackages = "com.example.product.client" )
+@EnableFeignClients(basePackages = "com.example.product.client")
 public class ServerApplication {
 
     public static void main(String[] args) {

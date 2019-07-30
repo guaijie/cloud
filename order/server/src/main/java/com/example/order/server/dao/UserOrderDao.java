@@ -10,11 +10,11 @@ public interface UserOrderDao {
 
     int addUserOrder(UserOrder userOrder);
 
-    int deleteUserOrder(String userId,String orderId);
+    int deleteUserOrder(String userId, String orderId);
 
-    int updateUserOrderStatus(String userId,String orderId,Integer orderStatus);
+    int updateUserOrderStatus(String userId, String orderId, Integer orderStatus);
 
-    int updateUserPayStatus(String userId, String orderId,Integer payStatus);
+    int updateUserPayStatus(String userId, String orderId, Integer payStatus);
 
     List<UserOrderVO> getUserOrderByPage(UserOrderViewDTO userOrderViewDTO);
 }

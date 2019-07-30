@@ -6,17 +6,17 @@ import lombok.Data;
 @Data
 public class ProductInfoCO {
 
-        @JsonProperty("id")
-        private String productId;
+    @JsonProperty("id")
+    private String productId;
 
-        @JsonProperty("name")
-        private String productName;
+    @JsonProperty("name")
+    private String productName;
 
-        @JsonProperty("price")
-        private Double productPrice;
+    @JsonProperty("price")
+    private Double productPrice;
 
-        private String categoryName;
+    private String categoryName;
 
-        private String categoryType;
+    private String categoryType;
 
 }

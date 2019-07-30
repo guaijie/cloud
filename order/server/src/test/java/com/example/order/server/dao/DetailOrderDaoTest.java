@@ -20,7 +20,7 @@ class DetailOrderDaoTest extends ServerApplicationTests {
     private DetailOrderDao detailOrderDao;
 
     @Test
-    public void addDetailOrder(){
+    public void addDetailOrder() {
         DetailOrder detailOrder = new DetailOrder();
         detailOrder.setProductCounts(4);
         detailOrder.setId("88304531204ef7431330c20427d95482");
@@ -31,25 +31,25 @@ class DetailOrderDaoTest extends ServerApplicationTests {
         detailOrder.setCategoryType("00001");
         detailOrder.setProductName("荣耀手机");
 
-        int flag=detailOrderDao.addOrderDetail(detailOrder);
+        int flag = detailOrderDao.addOrderDetail(detailOrder);
 
-        System.out.println("flag:"+flag);
-        Assert.assertTrue(flag==1);
+        System.out.println("flag:" + flag);
+        Assert.assertTrue(flag == 1);
     }
 
     @Test
-    public void deleteDetailOrder(){
-        int flag=detailOrderDao.deleteOrderDetail("039a953d952a71ed0a3034f48f699c7d");
-        System.out.println("flag:"+flag);
-        Assert.assertTrue(flag==1);
+    public void deleteDetailOrder() {
+        int flag = detailOrderDao.deleteOrderDetail("039a953d952a71ed0a3034f48f699c7d");
+        System.out.println("flag:" + flag);
+        Assert.assertTrue(flag == 1);
     }
 
     @Test
-    public void getDetailOrderByPage(){
-        DetailOrderViewDTO detailOrderViewDTO = new DetailOrderViewDTO("b567c0c5616794f6e4b9252d6efd65f5",0,5);
+    public void getDetailOrderByPage() {
+        DetailOrderViewDTO detailOrderViewDTO = new DetailOrderViewDTO("b567c0c5616794f6e4b9252d6efd65f5", 0, 5);
         List<DetailOrderVO> detailOrderList = detailOrderDao.getDetailOrderByPage(detailOrderViewDTO);
 
         System.out.println(detailOrderList.toString());
-        Assert.assertTrue(detailOrderList.size()>0);
+        Assert.assertTrue(detailOrderList.size() > 0);
     }
 }

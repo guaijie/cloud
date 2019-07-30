@@ -9,9 +9,10 @@ public class CartDTO {
 
     private Integer productCounts;
 
-    public CartDTO(){}
+    public CartDTO() {
+    }
 
-    public CartDTO(String productId, Integer productCounts){
+    public CartDTO(String productId, Integer productCounts) {
 
         this.productCounts = productCounts;
         this.productId = productId;

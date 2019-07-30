@@ -17,7 +17,7 @@ public class UserOrderVO {
 
     private Double orderAmount;
 
-    private  Integer orderStatus;
+    private Integer orderStatus;
 
     private Integer payStatus;
 

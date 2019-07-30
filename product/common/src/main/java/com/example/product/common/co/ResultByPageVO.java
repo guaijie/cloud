@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class ResultByPageVO<T>{
+public class ResultByPageVO<T> {
 
     private Integer code;
 

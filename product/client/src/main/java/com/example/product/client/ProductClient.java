@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name="product")
+@FeignClient(name = "product")
 public interface ProductClient {
 
     @RequestMapping("product/productInfosForOrder")
@@ -23,7 +23,7 @@ public interface ProductClient {
 
     @RequestMapping("product/productInfos")
     public ResultByPageVO<ProductInfoVO> getProductInfos(
-            @RequestParam(required=false) Integer status,
+            @RequestParam(required = false) Integer status,
             @RequestParam(required = false) String type,
             @RequestParam(required = false) Integer pages,
             @RequestParam(required = false) Integer counts

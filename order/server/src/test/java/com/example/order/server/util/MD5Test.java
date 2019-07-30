@@ -12,13 +12,13 @@ class MD5Test extends ServerApplicationTests {
 
     @Test
     void digest() {
-        String digest= MD5.digest("key","1");
-        Assert.assertTrue(digest.length()==32);
+        String digest = MD5.digest("key", "1");
+        Assert.assertTrue(digest.length() == 32);
     }
 
     @Test
     void verify() {
-        Boolean bool= MD5.verify("key","1","c2add694bf942dc77b376592d9c862cd");
-        Assert.assertTrue(bool==true);
+        Boolean bool = MD5.verify("key", "1", "c2add694bf942dc77b376592d9c862cd");
+        Assert.assertTrue(bool == true);
     }
 }

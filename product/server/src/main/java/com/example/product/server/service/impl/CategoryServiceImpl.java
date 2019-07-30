@@ -16,14 +16,14 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> findALlCategories() {
-        List<Category> list=categoryRepository.findAll();
+        List<Category> list = categoryRepository.findAll();
         return list;
     }
 
     @Override
     public List<Category> findCategoriesByCategoryTypes(List<String> categoryTypes) {
 
-        List<Category> list=categoryRepository.findAllByCategoryTypeIn(categoryTypes);
+        List<Category> list = categoryRepository.findAllByCategoryTypeIn(categoryTypes);
 
         return list;
     }

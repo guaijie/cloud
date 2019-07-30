@@ -24,45 +24,45 @@ public class ProductInfoServiceImpl implements ProductInfoService {
 
     @Override
     public Page<ProductInfo> findProductInfosByStatus(Integer productStatus, Integer page, Integer size) {
-        Pageable pageable= (Pageable) PageRequest.of(page,size);
-        Page<ProductInfo> pageWrapper= productInfoRepository.findByProductStatus(productStatus,pageable);
+        Pageable pageable = (Pageable) PageRequest.of(page, size);
+        Page<ProductInfo> pageWrapper = productInfoRepository.findByProductStatus(productStatus, pageable);
         return pageWrapper;
     }
 
     @Override
     public Page<ProductInfo> findProductInfosByPages(Integer page, Integer size) {
-        Pageable pageable= (Pageable) PageRequest.of(page,size);
-        Page<ProductInfo> pageWrapper= productInfoRepository.findAll(pageable);
+        Pageable pageable = (Pageable) PageRequest.of(page, size);
+        Page<ProductInfo> pageWrapper = productInfoRepository.findAll(pageable);
         return pageWrapper;
     }
 
     @Override
-    public Page<ProductInfo> findProductInfosByType(String categoryType,Integer page, Integer size) {
-        Pageable pageable= (Pageable) PageRequest.of(page,size);
-        Page<ProductInfo> pageWrapper= productInfoRepository.findByCategory_CategoryType(categoryType,pageable);
+    public Page<ProductInfo> findProductInfosByType(String categoryType, Integer page, Integer size) {
+        Pageable pageable = (Pageable) PageRequest.of(page, size);
+        Page<ProductInfo> pageWrapper = productInfoRepository.findByCategory_CategoryType(categoryType, pageable);
         return pageWrapper;
     }
 
     @Override
-    public Page<ProductInfo> findProductInfosByTypeAndStatus(String categoryType, Integer productStatus,Integer page, Integer size) {
-        Pageable pageable= (Pageable) PageRequest.of(page,size);
-        Page<ProductInfo> pageWrapper= productInfoRepository.findByCategory_CategoryTypeAndProductStatus(categoryType,productStatus,pageable);
+    public Page<ProductInfo> findProductInfosByTypeAndStatus(String categoryType, Integer productStatus, Integer page, Integer size) {
+        Pageable pageable = (Pageable) PageRequest.of(page, size);
+        Page<ProductInfo> pageWrapper = productInfoRepository.findByCategory_CategoryTypeAndProductStatus(categoryType, productStatus, pageable);
         return pageWrapper;
     }
 
     @Override
     public List<ProductInfo> findProductInfosByProductIdIn(List<String> productIdList) {
-        List<ProductInfo> list= productInfoRepository.findByProductIdIn(productIdList);
+        List<ProductInfo> list = productInfoRepository.findByProductIdIn(productIdList);
         return list;
     }
 
     @Override
     @Transactional
     public void decreseStock(List<CartDTO> cartDTOList) {
-        for(CartDTO cartDTO:cartDTOList){
-            Optional<ProductInfo> productInfoOptional=productInfoRepository.findById(cartDTO.getProductId());
+        for (CartDTO cartDTO : cartDTOList) {
+            Optional<ProductInfo> productInfoOptional = productInfoRepository.findById(cartDTO.getProductId());
             //判断商品是否存在
-            if(!productInfoOptional.isPresent()){
+            if (!productInfoOptional.isPresent()) {
                 throw new ProductException(ExceptionEnum.PRODUCT_NOT_EXIST);
             }
 
@@ -71,14 +71,14 @@ public class ProductInfoServiceImpl implements ProductInfoService {
             Integer nextStock = productInfo.getProductStock() - cartDTO.getProductCounts();
 
             //库存是否充足
-            if(nextStock < 0){
+            if (nextStock < 0) {
                 throw new ProductException(ExceptionEnum.PRODUCT_STOCK_ERROR);
             }
             System.out.println(productInfo.toString());
 
             productInfo.setProductStock(nextStock);
 
-            System.out.println("productInfo"+productInfo);
+            System.out.println("productInfo" + productInfo);
 
             productInfoRepository.save(productInfo);
 

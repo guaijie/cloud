@@ -17,15 +17,16 @@ public class ProductInfoRepositoryTest extends ServerApplicationTests {
     ProductInfoRepository productInfoRepository;
 
     @Test
-    public void findByProductStatus(){
-        Pageable pageable= (Pageable) PageRequest.of(1,1);
-        Page<ProductInfo> page=productInfoRepository.findByProductStatus(0,pageable);
+    public void findByProductStatus() {
+        Pageable pageable = (Pageable) PageRequest.of(1, 1);
+        Page<ProductInfo> page = productInfoRepository.findByProductStatus(0, pageable);
         Assert.assertTrue(page.hasContent());
     }
+
     @Test
-    public void findAll(){
-        Pageable pageable= (Pageable) PageRequest.of(1,1);
-        Page<ProductInfo> page=productInfoRepository.findAll(pageable);
+    public void findAll() {
+        Pageable pageable = (Pageable) PageRequest.of(1, 1);
+        Page<ProductInfo> page = productInfoRepository.findAll(pageable);
         System.out.println(page.getContent());
         Assert.assertTrue(page.hasContent());
     }

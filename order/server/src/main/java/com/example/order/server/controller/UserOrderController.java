@@ -31,14 +31,14 @@ public class UserOrderController {
     @Autowired
     OrderService orderService;
 
-    private final Integer COUNTS=10;
+    private final Integer COUNTS = 10;
 
-    private final Integer PAGES=1;
+    private final Integer PAGES = 1;
 
     @RequestMapping("productInfos")
-    public List<ProductInfoCO> getProductInfosByProductIdIn(@RequestParam(required = true) List<String> productIdList){
+    public List<ProductInfoCO> getProductInfosByProductIdIn(@RequestParam(required = true) List<String> productIdList) {
 
-        List<ProductInfoCO> list= productClient.getProductInfosByProductIdIn(productIdList);
+        List<ProductInfoCO> list = productClient.getProductInfosByProductIdIn(productIdList);
 
         return list;
     }
@@ -46,7 +46,7 @@ public class UserOrderController {
     @PostMapping("addUserOrder")
     public ResultVO addUserOrder(
             @RequestBody CartParamDTO cartParamDTO
-    ){
+    ) {
 
         UserOrderDTO userOrderDTO = new UserOrderDTO();
 
@@ -54,21 +54,21 @@ public class UserOrderController {
         List<DetailOrder> detailOrderList = new ArrayList<DetailOrder>();
 
 
-        for(CartDTO cartDTO:cartParamDTO.getCartDTOList()){
+        for (CartDTO cartDTO : cartParamDTO.getCartDTOList()) {
             DetailOrder detailOrder = new DetailOrder();
-            BeanUtils.copyProperties(cartDTO,detailOrder);
+            BeanUtils.copyProperties(cartDTO, detailOrder);
             detailOrderList.add(detailOrder);
         }
         userOrderDTO.setDetailOrderList(detailOrderList);
 
-        userOrderDTO=orderService.createOrder(userOrderDTO);
+        userOrderDTO = orderService.createOrder(userOrderDTO);
 
         ResultVO resultVO = new ResultVO();
 
         resultVO.setCode(200);
         resultVO.setMsg("创建订单成功");
-        Map<String,String> map =new HashMap<String,String>();
-        map.put("orderId",userOrderDTO.getOrderId());
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("orderId", userOrderDTO.getOrderId());
         resultVO.setData(map);
 
         return resultVO;
@@ -80,23 +80,23 @@ public class UserOrderController {
             @RequestParam(required = false) Integer payStatus,
             @RequestParam(required = false) Integer pages,
             @RequestParam(required = false) Integer counts
-    ){
-        if(pages==null || pages.toString().equals("")){
-            pages=PAGES;
+    ) {
+        if (pages == null || pages.toString().equals("")) {
+            pages = PAGES;
         }
-        if(counts==null || counts.toString().equals("")){
-            counts=COUNTS;
+        if (counts == null || counts.toString().equals("")) {
+            counts = COUNTS;
         }
 
-        Integer start = (pages-1) * counts;
+        Integer start = (pages - 1) * counts;
 
-        UserOrderViewDTO userOrderViewDTO =new UserOrderViewDTO(orderStatus,payStatus,start,counts);
+        UserOrderViewDTO userOrderViewDTO = new UserOrderViewDTO(orderStatus, payStatus, start, counts);
 
         List<UserOrderVO> userOrderVOList = orderService.getUserOrderByPage(userOrderViewDTO);
 
         ResultByPageVO<UserOrderVO> resultByPageVO = new ResultByPageVO<UserOrderVO>();
 
-        Integer totalNumber = userOrderVOList.size()==0 ? 0 : userOrderVOList.get(0).getTotal();
+        Integer totalNumber = userOrderVOList.size() == 0 ? 0 : userOrderVOList.get(0).getTotal();
 
         resultByPageVO.setCode(200);
         resultByPageVO.setMsg("订单查询成功！");
@@ -113,23 +113,23 @@ public class UserOrderController {
             @RequestParam(required = false) String orderId,
             @RequestParam(required = false) Integer pages,
             @RequestParam(required = false) Integer counts
-    ){
-        if(pages==null || pages.toString().equals("")){
-            pages=PAGES;
+    ) {
+        if (pages == null || pages.toString().equals("")) {
+            pages = PAGES;
         }
-        if(counts==null || counts.toString().equals("")){
-            counts=COUNTS;
+        if (counts == null || counts.toString().equals("")) {
+            counts = COUNTS;
         }
 
-        Integer start = (pages-1) * counts;
+        Integer start = (pages - 1) * counts;
 
-        DetailOrderViewDTO detailOrderViewDTO =new DetailOrderViewDTO(orderId,start,counts);
+        DetailOrderViewDTO detailOrderViewDTO = new DetailOrderViewDTO(orderId, start, counts);
 
         List<DetailOrderVO> detailOrderVOList = orderService.getDetailOrderByPage(detailOrderViewDTO);
 
         ResultByPageVO<DetailOrderVO> resultByPageVO = new ResultByPageVO<DetailOrderVO>();
 
-        Integer totalNumber = detailOrderVOList.size()==0 ? 0 : detailOrderVOList.get(0).getTotal();
+        Integer totalNumber = detailOrderVOList.size() == 0 ? 0 : detailOrderVOList.get(0).getTotal();
 
         resultByPageVO.setCode(200);
         resultByPageVO.setMsg("订单查询成功！");
@@ -145,18 +145,18 @@ public class UserOrderController {
     public ResultVO delteUserOrder(
             @RequestParam String orderId,
             @RequestParam String userId
-    ){
-        String str = orderService.deleteUserOrder(userId,orderId);
+    ) {
+        String str = orderService.deleteUserOrder(userId, orderId);
         ResultVO resultVO = new ResultVO();
-        if(str == null){
+        if (str == null) {
             resultVO.setCode(400);
             resultVO.setMsg("订单不存在！");
-        }else{
+        } else {
             resultVO.setCode(200);
             resultVO.setMsg("订单删除成功！");
         }
-        Map<String,String> map = new HashMap<String,String>();
-        map.put("orderId",orderId);
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("orderId", orderId);
         resultVO.setData(map);
 
         return resultVO;

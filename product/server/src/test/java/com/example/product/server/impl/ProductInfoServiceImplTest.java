@@ -21,38 +21,38 @@ class ProductInfoServiceImplTest extends ServerApplicationTests {
 
     @Test
     public void findProductInfosByStatus() {
-        Page<ProductInfo> pageWrapper=productInfoService.findProductInfosByStatus(0,1,1);
+        Page<ProductInfo> pageWrapper = productInfoService.findProductInfosByStatus(0, 1, 1);
         Assert.assertTrue(pageWrapper.hasContent());
     }
 
     @Test
     public void findProductInfosByPages() {
 
-        Page<ProductInfo> pageWrapper=productInfoService.findProductInfosByPages(2,2);
+        Page<ProductInfo> pageWrapper = productInfoService.findProductInfosByPages(2, 2);
         Assert.assertTrue(pageWrapper.hasContent());
     }
 
     @Test
     public void findProductInfosByType() {
-        Page<ProductInfo> pageWrapper=productInfoService.findProductInfosByType("00001",1,1);
+        Page<ProductInfo> pageWrapper = productInfoService.findProductInfosByType("00001", 1, 1);
         Assert.assertTrue(pageWrapper.hasContent());
     }
 
     @Test
     public void findProductInfosByTypeAndStatus() {
-        Page<ProductInfo> pageWrapper=productInfoService.findProductInfosByTypeAndStatus("00001",0,1,1);
+        Page<ProductInfo> pageWrapper = productInfoService.findProductInfosByTypeAndStatus("00001", 0, 1, 1);
         Assert.assertTrue(pageWrapper.hasContent());
     }
 
     @Test
     public void findProductInfosByProductIdIn() {
-        List<ProductInfo> list= productInfoService.findProductInfosByProductIdIn(Arrays.asList("0000000001"));
-        Assert.assertTrue(list.size()>0);
+        List<ProductInfo> list = productInfoService.findProductInfosByProductIdIn(Arrays.asList("0000000001"));
+        Assert.assertTrue(list.size() > 0);
     }
 
     @Test
-    public void deccreaseStock() throws Exception{
-        CartDTO cartDTO = new CartDTO("0000000001",2);
+    public void deccreaseStock() throws Exception {
+        CartDTO cartDTO = new CartDTO("0000000001", 2);
         productInfoService.decreseStock(Arrays.asList(cartDTO));
     }
 
